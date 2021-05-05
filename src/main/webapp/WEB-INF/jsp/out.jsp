@@ -130,7 +130,7 @@
                                                </a>
                                                <ul class="treeview-menu">
                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                   <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                  <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -138,6 +138,8 @@
                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                    <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                    <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
 
                                                </ul>
                                            </li>
@@ -152,7 +154,11 @@
                                                            <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                            <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                            <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                            <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                            <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                           <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                           <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                           <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                                </ul>
                                            </li>
                                           <!--  <li class="treeview">
@@ -186,9 +192,10 @@
 
         <!-- Main content -->
         <section class="content">
+        <br>
             <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+            <div class="row mt-4">
+                <div class="col-md-6 ml-5 ml-5 pb-2">
                     <!-- small box -->
                     <a class="small-box bg-aqua" href="transport"><div class="small-box bg-aqua">
                         <div class="inner">
@@ -202,7 +209,7 @@
                 </div>
                 
                 <!-- ./col -->
-                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+                <div class="col-md-6 ml-5 ml-5 pb-2 ">
                     <!-- small box -->
                         <a class="small-box bg-green" href="addDriverDetails"><div class="small-box bg-green">
                         <div class="inner">
@@ -217,8 +224,9 @@
                     </div></a>
                 
                 </div>
-
-                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+				</div>
+				<div class="row">
+                <div class="col-md-6 ml-5 ml-5 pb-2" >
                     <!-- small box -->
                         <a class="small-box bg-green" href="orderDetails"><div class="small-box bg-green">
                         <div class="inner">
@@ -234,7 +242,25 @@
 
                 </div>
 
-                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+                <div class="col-md-6 ml-5 ml-5 pb-2" >
+                    <!-- small box -->
+                        <a class="small-box bg-green" href="dispatchExcelImport"><div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>Import Dispatch<sup style="font-size: 20px"></sup></h3>
+                            <h3>Plan</h3>
+
+                        </div>
+                        <div class="icon">
+                                    <i class="fa fa-file-excel-o"></i>
+                                </div>
+
+                    </div></a>
+
+                </div>
+					</div>
+					
+					<div class="row">
+                    <div class="col-md-6 ml-5 ml-5 pb-2" >
                     <!-- small box -->
                         <a class="small-box bg-green" href="/api/generateTExcel"><div class="small-box bg-green">
                         <div class="inner">
@@ -250,8 +276,70 @@
 
                 </div>
 
+      <div class="col-md-6 ml-5 ml-5 pb-2" >
+                    <!-- small box -->
+                        <a class="small-box bg-green" href="downloadTransportExcel"><div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>Download Dispatch<sup style="font-size: 20px"></sup></h3>
+                            <h3>Plan</h3>
 
-              
+                        </div>
+                        <div class="icon">
+                                    <i class="fa fa-file-excel-o"></i>
+                                </div>
+
+                    </div></a>
+
+                </div>
+ <div class="col-md-6 ml-5 ml-5 pb-2" >
+                    <!-- small box -->
+                        <a class="small-box bg-green" href="manualOrder"><div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>Mannual<sup style="font-size: 20px"></sup></h3>
+                            <h3>Order</h3>
+
+                        </div>
+                        <div class="icon">
+                                    <i class="fa fa-first-order"></i>
+                                </div>
+
+                    </div></a>
+
+                </div>
+
+                <div class="col-md-6 ml-5 ml-5 pb-2" >
+                                    <!-- small box -->
+                                        <a class="small-box bg-green" href="complete"><div class="small-box bg-green">
+                                        <div class="inner">
+                                            <h3>Complete<sup style="font-size: 20px"></sup></h3>
+                                            <h3>Order</h3>
+
+                                        </div>
+                                        <div class="icon">
+                                                    <i class="fa fa-first-order"></i>
+                                                </div>
+
+                                    </div></a>
+
+                                </div>
+                                <div class="col-md-6 ml-5 ml-5 pb-2" >
+                                                                    <!-- small box -->
+                                                                        <a class="small-box bg-green" href="MannualOrderReport"><div class="small-box bg-green">
+                                                                        <div class="inner">
+                                                                            <h3>Mannual Order<sup style="font-size: 20px"></sup></h3>
+                                                                            <h3>Report</h3>
+
+                                                                        </div>
+                                                                        <div class="icon">
+                                                                                    <i class="fa fa-file-excel-o"></i>
+                                                                                </div>
+
+                                                                    </div></a>
+
+                                                                </div>
+
+
+
             </div>
             <!-- /.row -->
             <!-- Main row -->
@@ -320,5 +408,7 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
 </body>
 </html>

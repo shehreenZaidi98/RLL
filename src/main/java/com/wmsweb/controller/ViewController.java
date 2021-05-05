@@ -230,19 +230,86 @@ public class ViewController {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "varifyProduction";
     }
+
     @RequestMapping(value = {"addDriverDetails"}, method = {RequestMethod.GET})
     public String addDriverDetails(Model model) {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "addDriverDetails";
     }
-   @RequestMapping(value = {"customOrder"}, method = {RequestMethod.GET})
+
+    @RequestMapping(value = {"customOrder"}, method = {RequestMethod.GET})
     public String customOrder(Model model) {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "customOrder";
     }
- @RequestMapping(value = {"insertProduction"}, method = {RequestMethod.GET})
+
+    @RequestMapping(value = {"insertProduction"}, method = {RequestMethod.GET})
     public String insertProduction(Model model) {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "insertProduction";
     }
+
+    @RequestMapping(value = {"dispatchExcelImport"}, method = {RequestMethod.GET})
+    public String dispatchExcelImport(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "dispatchExcelImport";
+    }
+
+    @RequestMapping(value = {"downloadTransportExcel"}, method = {RequestMethod.GET})
+    public String downloadTransportExcel(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "downloadTransportExcel";
+    }
+
+    @RequestMapping(value = {"downloadProductionExcel"}, method = {RequestMethod.GET})
+    public String downloadProductionExcel(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "downloadProductionExcel";
+    }
+
+    @RequestMapping(value = {"completeOrder"}, method = {RequestMethod.GET})
+    public String orderComplete(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/completeProduct?order_id=";
+    }
+    
+    @RequestMapping(value = {"editDetail"}, method = {RequestMethod.GET})
+    public String editDetail(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/editDetail";
+    }
+    
+    
+    @RequestMapping(value = {"complete"}, method = {RequestMethod.GET})
+    public String complete(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/complete";
+    }
+    
+    
+    @RequestMapping(value = {"cancel"}, method = {RequestMethod.GET})
+    public String cancel(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/cancel";
+    }
+    
+    @RequestMapping(value = {"productionPlanImport"}, method = {RequestMethod.GET})
+    public String productionPlanImport(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/productionPlanImport";
+    }
+    
+    
+    @RequestMapping(value = {"manualOrder"}, method = {RequestMethod.GET})
+    public String manualOrder(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/manualOrder";
+    }
+
+    @RequestMapping(value = {"MannualOrderReport"}, method = {RequestMethod.GET})
+    public String manualOrderReport(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "/MannualOrderReport";
+    }
+       
 }

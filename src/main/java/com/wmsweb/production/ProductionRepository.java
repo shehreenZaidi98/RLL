@@ -32,6 +32,9 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
 
     @Query("select p from Production p ")
     List<Production> getAllProductionData();
+    
+    @Query("select p.sku from Production p where status='PASS'")
+    List<String> getAllStateList();
 
     @Query("select p from Production p where day(date)=day(CURDATE()-1) ")
     List<Production> getTodayProductionData();

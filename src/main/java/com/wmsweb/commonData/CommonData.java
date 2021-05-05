@@ -15,6 +15,7 @@ public class CommonData {
     private String priority;
     private String date;
     private int status;
+    private String truck_bay_no;
 
     public long getId() {
         return this.id;
@@ -63,4 +64,14 @@ public class CommonData {
     public void setStatus(int status) {
         this.status = status;
     }
+
+	public String getTruck_bay_no() {
+		return truck_bay_no;
+	}
+
+	public void setTruck_bay_no(String truck_bay_no) {
+		this.truck_bay_no = truck_bay_no;
+	}
+    
+
 }

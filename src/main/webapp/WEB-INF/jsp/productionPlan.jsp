@@ -40,6 +40,20 @@
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
         <link rel="stylesheet" href="bootstrap.min.css">
+             <style>
+        	.slideline{
+        		height:90vh;
+        		border-right:solid;
+        		border-color:#3c8dbc;
+        		
+        		
+        	}
+        	@media only screen and (max-width: 992px) {
+				  .slideline {
+				    display:none;
+				  }
+				}
+        </style>
   <script src="jquery-1.10.2.js"></script>
         <script>
             $(document).ready(function(){
@@ -147,7 +161,7 @@
                                              </a>
                                              <ul class="treeview-menu">
                                              <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                    <li class="active"><a data-toggle="modal" data-target="#modalid"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                     <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                      <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                     <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -155,6 +169,8 @@
                                                         <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                        <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                      <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                     <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                     <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
                                        </ul>
                                          </li>
                                          <li class="treeview">
@@ -168,7 +184,11 @@
                                                                    <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                                    <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                                    <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                                   <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                                    <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                                    <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                                    <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                                    <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                             </ul>
                                          </li>
                                         <!--  <li class="treeview">
@@ -193,20 +213,21 @@
             </ol>
         </section>
         <!-- Main content -->
+        <br><br>
         <section class="content">
-                    <div class="panel panel-primary">
-                        <div class="container" >
-                        <div style="width:30%;display:inline-block">
-                            <h2 style="margin-left:20px"><b>Add Product Plan</b></h2></div>
-                            <div style="width:69%;display:inline-block">
-                            <h2 style="margin-left:20%"><b>Today Product Plan Limit</b></h2>
+                    <div class="panel panel-primary" >
+                        <div class="container-fluid" >
+                   
+                            <div class="row mt-5" >
+                            	<div class="col-md-3" style="height:80vh">
+                          
+                            <div>
+                           		 <h2><b>Add Product Plan</b></h2>
                             </div>
-                           <div style="width:25%;height:500px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
-                                <table style="margin-left:40px">
+                                <table width="100%">
                                     <tr>
                                         <td>
-                                            <div class="form-group" >
-                                           
+                                            <div class="form-group">
                                                <h5 style="font-weight:bold;"> SKU: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
                                               <input list="sku" id="sku1" name="sku" class="form-control" placeholder="Enter SKU ...">
                                               <datalist id="sku">  </datalist>
@@ -225,7 +246,7 @@
                                             <br>
                                                 <h5 style="font-weight:bold;">Line No:&nbsp; <label for="product_name" style="font-weight:bold;color:red;">*</label><br></h5>
                                                 <!-- <input type="text" class="form-control" id="line_no" name="lINE_no" placeholder="Enter Line No ..." required> -->
-                                             <input list="select1" id="line_no" name="sku" class="form-control" placeholder="Enter SKU ...">
+                                             <input list="select1" id="line_no" name="sku" class="form-control" placeholder="Enter Line Number ...">
                                              <datalist id="select1">
 
 
@@ -246,20 +267,25 @@
                                         
                                     </tr>                                    
                                    
-                                       
-                                    
                                     <tr>
-
                                         <td>
-										<br><br>
-                                            <div class="form-group" style="margin-left:12%;">
+										<br>
+                                            <div class="form-group">
                                             <button  class="btn btn-danger" onclick="insertProductionPlan()" >Submit</button>
                                        </div> </td>
                                     </tr>
                                 </table>
                                 </div>
-                                <div style="width:65%;display:inline-block;height:450px">
-                                <table  border="1" style="width:100%; margin-left:15px;margin-top:-30px" id="pp">
+                               
+                                <div class="col-md-1">
+                                	 <div class="slideline" ></div>
+                                </div>
+                                <div class="col-md-8">
+                                <div style="width:100%;height:80vh;overflow-y:auto">
+                                  <div style="width:100%;" >
+                            <h2 style="margin-left:20%"><b>Today Product Plan Limit</b></h2>
+                            </div>
+                                <table  border="1" style="width:100%;" id="pp">
                                 <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">
                                 <th style="text-align:center">SKU</th>
                                 <th style="text-align:center">LINE NO</th>
@@ -268,9 +294,12 @@
                                 <th style="text-align:center" >DATE TIME</th>
                                 </tr>
                                 </table>
-                                </div>                            
+                                </div>  
+                                </div>  
+                               </div>                         
                         </div>
-                    </div>
+                        </div>
+                   
                 </section>
         <!-- /.content -->
     </div>
@@ -296,6 +325,37 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<!--popup modal  -->
+	<div class="modal fade" id="modalid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#3c8dbc">
+       <h3 class="modal-title" style="color:white">Enter Password To Insert Production</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      		<div class="row"> 
+      			<div class="col-md-12">
+      				<h2 id="comp_name"></h2>
+      			</div>
+      		</div> 
+      		<br>
+      			<div class="row"> 
+      			<div class="col-md-12">
+      				<input type="password" id="password" class="form-control" placeholder="Enter Password">
+      			</div>
+      		</div> 
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="popup()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -335,6 +395,31 @@
 <script src="paho.js"></script>
  <script src="url.js"></script>
 <script src="productionPlan.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
+<script>
+document.getElementById("comp_name").innerHTML=localStorage.getItem("user_id");
+
+function popup(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = XHR.responseText;
+	        var result=JSON.parse(response);
+	        console.log(result);
+			if(result.message=="Successful"){
+			
+			window.location.href="insertProduction";
+			}else{
+			alert("Please Enter Correct Password");
+			}
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getPassword?user_name="+document.getElementById("comp_name").innerHTML+"&password="+document.getElementById("password").value, true);
+	XHR.send();
+	}
+</script>
 </body>
 </html>
 <%-- <%}%> --%>

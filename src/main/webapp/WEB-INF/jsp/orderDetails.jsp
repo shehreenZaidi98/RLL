@@ -31,7 +31,16 @@
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
         <link rel="stylesheet" href="bootstrap.min.css">
-
+        <style>
+        div.scrollable {
+    	width: 180px;
+    	height: 50px;
+    	margin: 0;
+    	padding: 0;
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+		}
+        </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -130,7 +139,7 @@
                                                </a>
                                                <ul class="treeview-menu">
                                              <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                  <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                     <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                      <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                     <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -138,6 +147,8 @@
                                                         <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                        <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                      <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                     <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                    <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
 
                                                </ul>
                                            </li>
@@ -152,7 +163,10 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                  <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                  <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                                </ul>
                                            </li>
                                           <!--  <li class="treeview">
@@ -181,23 +195,24 @@
             </ol>
         </section>
 
-         <div class="container">
+         <div class="container-fluid">
             <h2 style="text-align:center">ORDER DETAILS</h2>
              <section class="content">
-                    <div class="panel panel-primary" style="width:28.5cm;height:400px">
-                        <div class="container" style="overflow:scroll;height:390px;width:27.7cm">
+                    <div class="panel panel-primary" style="width:100%;height:400px">
+                        <div class="container-fluid" style="overflow:scroll;height:390px;width:100%">
 
-                            <table id="orderTable" class="table table-bordered table-striped" style="width:27.7cm">
+                            <table id="orderTable" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                         <tr>
-                          <th>Order Id.</th>
-                          <th>Vehicle No.</th>
-                          <th>Party Name.</th>
-                          <th>Total Weight.</th>
-                          <th>State</th>
-                          <th>Quantity</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                          <th class="text-center">Order Id</th>
+                          <th class="text-center">Vehicle No</th>
+                          <th class="text-center">Party Name</th>
+                          <th class="text-center">State</th>
+                          <th class="text-center">SKU</th>
+                          <th class="text-center">Quantity</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">Edit</th>
+                          <th class="text-center">Cancel</th>
                         </tr>
                         </thead>
                         <tbody id="order">
@@ -207,9 +222,7 @@
                       </table>
                         </div>
                     </div>
-                      <div align="center">
-                      <input type="button" name="Submit" value="Submit" onclick="getSpecificOrderId()">
-                          </div>
+
                 </section>
 
                 </div>
@@ -277,7 +290,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
  <script src="url.js"></script>
+  <script src="url.js"></script>
+ <script src="paho.js"></script>
 <script src="orderDetails.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
 
 </body>
 </html>

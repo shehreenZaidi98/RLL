@@ -130,7 +130,7 @@
                                           </a>
                                           <ul class="treeview-menu">
                                              <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                    <li class="active"><a data-toggle="modal" data-target="#modalid"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                     <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                      <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                     <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -138,6 +138,8 @@
                                                         <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                        <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                      <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                      <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                     <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
 
                                           </ul>
                                       </li>
@@ -152,7 +154,11 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                  <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                  <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                  <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                            </ul>
                                       </li>
 
@@ -184,7 +190,7 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
          <div class="row">
-         <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+         <div class="col-md-6 mr-5 ml-5 mb-2  " >
                           <a class="small-box bg-red" href="productionPlan"><div class="small-box bg-red">
                           <div class="inner">
                           <h3>Production <sup style="font-size: 20px"></sup></h3>
@@ -198,8 +204,8 @@
                           </div>
 
 
-         <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
-                          <a class="small-box bg-red" href="insertProduction"><div class="small-box bg-red">
+         <div class="col-md-6 mb-2 ml-5 mr-5  " >
+                          <a class="small-box bg-red" data-toggle="modal" data-target="#modalid"><div class="small-box bg-red">
                           <div class="inner">
                           <h3>Manual Insert<sup style="font-size: 20px"></sup></h3>
                           <h3>Production</h3>
@@ -211,8 +217,9 @@
                           </div></a>
                           </div>
 
-
-          <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+		</div>
+		<div class="row mt-5">
+          <div class="col-md-6 mb-2 ml-5 mr-5" >
                              <!-- small box -->
                             <a class="small-box bg-aqua" href="updateProduction"> <div class="small-box bg-aqua">
                                  <div class="inner">
@@ -226,7 +233,7 @@
                              </div></a>
                          </div>
 
-                           <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                           <div class="col-md-6 ml-5 mr-3  mb-2 " >
                                           <a class="small-box bg-red" href="verifyProduct"><div class="small-box bg-red">
                                           <div class="inner">
                                           <h3>Verify<sup style="font-size: 20px"></sup></h3>
@@ -238,7 +245,10 @@
 
                                           </div></a>
                                           </div>
-             <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                                          
+                </div>
+                <div class="row">                          
+             <div class="col-md-6 mb-2 " >
 
               <a class="small-box bg-green" href="searchProduct"><div class="small-box bg-green">
               <div class="inner">
@@ -259,7 +269,7 @@
 
                    <!-- ./col -->
 
-                 <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                 <div class="col-md-6 mb-2  " >
                   <a class="small-box bg-blue" href="excelImport"><div class="small-box bg-blue">
                   <div class="inner">
                   <h3>Add<sup style="font-size: 20px"></sup></h3>
@@ -271,10 +281,10 @@
 
                   </div></a>
                   </div>
-
+					</div>
               <!-- ./col -->
-
-                 <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+				<div class="row">
+                 <div class="col-md-6 mb-2  " >
                  <a class="small-box bg-orange" href="changeSkuCapacity"><div class="small-box bg-orange">
                  <div class="inner">
                  <h3>Update<sup style="font-size: 20px"></sup></h3>
@@ -287,7 +297,7 @@
                  </div></a>
                  </div>
                 
-                <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                <div class="col-md-6  mb-2  ">
                  <a class="small-box bg-red" href="changeBayCapacity"><div class="small-box bg-red">
                  <div class="inner">
                  <h3>Update<sup style="font-size: 20px"></sup></h3>
@@ -300,9 +310,10 @@
                  </div></a>
                  </div>
 
+				</div>
+				<div class="row">
 
-
-      <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+      <div class="col-md-6 mb-2  " >
                  <a class="small-box bg-red" href="/api/generateExcel"><div class="small-box bg-red">
                  <div class="inner">
                  <h3>Generate<sup style="font-size: 20px"></sup></h3>
@@ -315,9 +326,35 @@
                  </div></a>
                  </div>
 
+      <div class="col-md-6 mb-2  ">
+                 <a class="small-box bg-red" href="downloadProductionExcel"><div class="small-box bg-red">
+                 <div class="inner">
+                 <h3>Download<sup style="font-size: 20px"></sup></h3>
+                 <h3>Production</h3>
+                 </div>
+                 <div class="icon">
+                 <i class="fa fa-file-excel-o"></i>
+                 </div>
+
+                 </div></a>
+                 </div>
+
+                 <div class="col-md-6 mb-2  ">
+                                  <a class="small-box bg-red" href="productionPlanImport"><div class="small-box bg-red">
+                                  <div class="inner">
+                                  <h3>Import Production<sup style="font-size: 20px"></sup></h3>
+                                  <h3>Plan</h3>
+                                  </div>
+                                  <div class="icon">
+                                  <i class="fa fa-file-excel-o"></i>
+                                  </div>
+
+                                  </div></a>
+                                  </div>
+
         </div>
 
-           
+
          
         </section>
         <!-- /.content -->
@@ -342,9 +379,40 @@
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
+   <!--   <button id="logbtn" style="display:none;" data-toggle="modal" data-target="#modalid">click</button> -->
 </div>
 <!-- ./wrapper -->
 
+<!--popup modal  -->
+	<div class="modal fade" id="modalid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#3c8dbc">
+        <h3 class="modal-title" style="color:white">Enter Password To Insert Production</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      		<div class="row"> 
+      			<div class="col-md-12">
+      				<h2 id="comp_name"></h2>
+      			</div>
+      		</div> 
+      		<br>
+      			<div class="row"> 
+      			<div class="col-md-12">
+      				<input type="password" id="password" class="form-control" placeholder="Enter Password">
+      			</div>
+      		</div> 
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="popup()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -382,5 +450,30 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="url.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
+<script>
+
+function popup(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = XHR.responseText;
+	        var result=JSON.parse(response);
+	        console.log(result);
+			if(result.message=="Successful"){
+			
+			window.location.href="insertProduction";
+			}else{
+			alert("Please Enter Correct Password");
+			}
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getPassword?password="+document.getElementById("password").value, true);
+	XHR.send();
+	}
+</script>
 </body>
 </html>

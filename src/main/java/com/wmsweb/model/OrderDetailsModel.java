@@ -5,19 +5,21 @@ public class OrderDetailsModel {
     private long order_id;
     private String vehicle_no;
     private String party_name;
-    private String weight;
+    private String vehicle_type;
     private String state;
     private int quantity;
     private int status;
+    private String sku;
 
-    public OrderDetailsModel(long order_id, String vehicle_no, String party_name, String weight, String state, int quantity, int status) {
+    public OrderDetailsModel(long order_id, String vehicle_no, String party_name, String vehicle_type, String state, int quantity, int status, String sku) {
         this.order_id = order_id;
         this.vehicle_no = vehicle_no;
         this.party_name = party_name;
-        this.weight = weight;
+        this.vehicle_type = vehicle_type;
         this.state = state;
         this.quantity = quantity;
         this.status = status;
+        this.sku = sku;
     }
 
     public long getOrder_id() {
@@ -60,12 +62,12 @@ public class OrderDetailsModel {
         this.state = state;
     }
 
-    public String getWeight() {
-        return this.weight;
+    public String getVehicle_type() {
+        return vehicle_type;
     }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
+    public void setVehicle_type(String vehicle_type) {
+        this.vehicle_type = vehicle_type;
     }
 
     public int getQuantity() {
@@ -74,5 +76,13 @@ public class OrderDetailsModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 }

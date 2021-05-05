@@ -31,6 +31,16 @@
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
         <link rel="stylesheet" href="bootstrap.min.css">
+        <style>
+        div.scrollable {
+    	width: 180px;
+    	height: 50px;
+    	margin: 0;
+    	padding: 0;
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+		}
+        </style>
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -130,7 +140,7 @@
                                               </a>
                                               <ul class="treeview-menu">
                                                   <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                  <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                  <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                   <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                    <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                   <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -138,6 +148,8 @@
                                                       <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                      <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                    <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                   <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                    <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
 
                                               </ul>
                                           </li>
@@ -152,7 +164,11 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                   <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                  <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                 <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                               </ul>
                                           </li>
                                          <!--  <li class="treeview">
@@ -177,36 +193,39 @@
                 
             </h1>
            <ol class="breadcrumb">
-  <h4 style="float: left;margin-right:20px;" ><a href="in"><i class="fa fa-arrow-circle-left"></i>&nbsp;IN</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
+  <h4 style="float: left;margin-right:20px;" ><a href="out"><i class="fa fa-arrow-circle-right"></i>&nbsp;OUT</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
 
             </ol>
         </section>
 
-         <div class="container">
+         <div class="container-fluid">
             <h2>Transport Details</h2>
              <section class="content">
-                    <div class="panel panel-primary" style="width:28.5cm">
-                        <div class="container">
+                    <div class="panel panel-primary" style="width:100%;">
+                        <div class="container-fluid">
                             <b><h2>Add Driver Details</h2></b>
                           <div style="height:300px;overflow:scroll">
-                            <table id="proTable" class="table table-bordered table-striped" style="width:27.7cm">
+                            <table id="proTable" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                         <tr>
                           <th>Order Id.</th>
                           <th>Party name</th>
+                          <th style="width:180px">SKU</th>
                           <th>Address</th>
                           <th>State</th>
-                          <th></th>
+                          <th>Action</th>
 
                         </tr>
                         </thead>
-                        <tbody id="table">
+                        <tbody id="table" >
                         
                         </tbody>
                       </table>
 					  <div>
 						
                         </div>
+                    </div>
+                    </div>
                     </div>
                 </section>
                 
@@ -221,7 +240,7 @@
 	
 	
 	
-	 <div id="verify" class="modal fade" role="dialog">
+	 <div id="verify" class="modal fade" role="dialog" style="width:110%">
                 <div class="modal-dialog">
                   <!-- Modal content-->
                   <div class="modal-content">
@@ -233,14 +252,15 @@
                       
                      </div>
                    <br>
-				             <table id="table1" class="table table-bordered table-striped" style="width:15cm;margin-left:.4cm">
+				             <table id="table1" class="table table-bordered table-striped" style="width:100%;">
                         <thead>
-                        <tr>
+                        <tr style="width:100%">
                           <th>Order Id</th>
                           <th>Driver Name</th>
                           <th>Contact No</th>
                           <th>Vehicle No.</th>
-                          <th>Truck Bay No.</th>
+                          <th style="width:100px">Truck Bay</th>
+                          <th>Vehicle Type</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -249,10 +269,23 @@
                         <td contenteditable='true' id="driverName" ></td>
                         <td contenteditable='true' id="Contact" ></td>
                         <td contenteditable='true' id="Vehicle" ></td>
-                        <td ><select  style="width:2.5cm;height:1cm" id="bayNo" >
-                        <option value="select">Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <td >
+                        <input list="truckBay1"  oninput="limitInput()" class="form-control" id="truckBay"
+                          required>
+                        <datalist id="truckBay1" ></datalist>
+                        </td>
+                        <td>
+                        <select  class="form-control" id="vehicleType">
+                        <option value="3MT">3MT</option>
+                        <option value="5MT">5MT</option>
+                        <option value="8.5MT">8.5MT</option>
+                        <option value="9MT">9MT</option>
+                        <option value="15MT">15MT</option>
+                         <option value="18MT">18MT</option>
+                        <option value="20MT">20MT</option>
+                        <option value="25MT">25MT</option>
+                        <option value="28MT">28MT</option>
+
                         </select></td>
                         </tr>
                         </tbody>
@@ -331,6 +364,11 @@
 <script src="dist/js/demo.js"></script>
  <script src="url.js"></script>
 <script src="addDriverDetails.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
+<script>
+
+</script>
 
 </body>
 </html>

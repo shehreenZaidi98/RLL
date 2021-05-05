@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package com.wmsweb.transport;
 
@@ -75,15 +72,37 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
     public int updateTransport(long order_id, String total_Qty, String sku);
 
     @Modifying
-    @Query(value = "update transport set driver_name=?2,vehicle_no=?3,contact_no=?4,truck_bay_no=?5 where order_id=?1", nativeQuery = true)
+    @Query(value = "update transport set driver_name=?2,vehicle_no=?3,contact_no=?4,truck_bay_no=?5,vehicle_type=?6 where order_id=?1", nativeQuery = true)
     @Transactional
-    public int addDriverDetails(long order_id,String  driver_name, String vehicle_no, String contact_no,String truck_bay);
+    public int addDriverDetails(long order_id,String  driver_name, String vehicle_no, String contact_no,String truck_bay,String vehicle_type);
 
-    @Query("select ts from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3 and state=?4")
+    @Query("select ts from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3 and state=?4 and status between 0 and 2")
     List<Transport> getTransportDetails(int day,int month,int year,String state);
 
+    @Query("select ts from Transport ts where date between ?1 and ?2 and state=?3 and status between 0 and 2")
+    List<Transport> getTransportDetails(String from,String to,String state);
 
-    @Query("select ts.state from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3")
+
+    @Query("select ts.state from Transport ts where date between ?1 and ?2 and status between 0 and 2")
+    List<String> getTransportDetails(String from,String to);
+
+  @Query("select ts.state from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3 and status between 0 and 2")
     List<String> getTransportDetails(int day,int month,int year);
+
+    @Query("select ts.truck_bay_no from Transport ts where truck_bay_no!=''")
+    Set<String>getTruckBay();
+
+    @Modifying
+    @Query(value = "update  transport set status=2 where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int transportOrderComplete(long order_id);
+
+    @Modifying
+    @Query(value = "update  transport set total_qty=?2,sku=?3 where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int updateSkuAndQty(long order_id,String total_qty,String sku);
+
+    @Query("select ts.order_id from Transport ts where truck_bay_no=?1 and date between ?2 and ?3 and status=1")
+    List<String> getOrderIdwithTruckBayNo(String truck_bay_no,String from,String to);
 
 }

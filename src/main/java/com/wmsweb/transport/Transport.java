@@ -23,7 +23,7 @@ public class Transport {
     private String permit_no;
     private String truck_bay_no;
     private String total_qty;
-    private String total_weight;
+    private String vehicle_type;
     private String sku;
 
     public String getSku() {
@@ -42,12 +42,12 @@ public class Transport {
         this.total_qty = total_qty;
     }
 
-    public String getTotal_weight() {
-        return this.total_weight;
+    public String getVehicle_type() {
+        return vehicle_type;
     }
 
-    public void setTotal_weight(String total_weight) {
-        this.total_weight = total_weight;
+    public void setVehicle_type(String vehicle_type) {
+        this.vehicle_type = vehicle_type;
     }
 
     public long getOrder_id() {

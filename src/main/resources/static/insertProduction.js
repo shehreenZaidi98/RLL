@@ -51,7 +51,7 @@ function getProduction(){
 	        var response = xhttp1.responseText;
 	        var result=JSON.parse(response);
 	        console.log(result);
-	      var table=document.getElementById("pp");
+	      var table=document.getElementById("ip");
 	      table.innerHTML="";
 	      table.innerHTML=' <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">'+
                                                          '<th style="text-align:center">BAY</th>'+
@@ -112,23 +112,17 @@ function insertManualProduction(){
 	          console.log(XHR2.responseText);
 	          var response = JSON.parse(XHR2.responseText);
 	          if(response['message']=="Successful") {
-	   	               alert("Successfully Inserted");
-	               document.getElementById("sku").value="";
-	               document.getElementById("batch_no").value="";
+			       alert("Successfully Inserted");
 	           	   document.getElementById("bay").value="";
 	           	   document.getElementById("qty").value="";
-                   getProduction();
-
+                   getProduction()
 	          }
-
 			  else {
-
 	            alert("unSuccessful");
-
 	          }
 	      }
-
-
 	XHR2.send(JSON.stringify(hash));
 }
 }
+
+

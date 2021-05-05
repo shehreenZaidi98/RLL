@@ -101,6 +101,17 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#popup {
+    width:220px;
+    height:100px;
+    padding:20px;
+    background-color:#3c8dbc;
+    position:absolute;
+    top:200px;
+    left:600px;
+    display:none;
+}
 </style>
 
 
@@ -193,16 +204,17 @@ input:checked + .slider:before {
                                             </a>
                                             <ul class="treeview-menu">
                                              <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
-                                         </ul>
-                                        </li>
+                                             <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                             <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                             <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                             <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                             <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                              <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                              <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                              <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                              <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                              <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
+                                            </ul</li>
                                         <li class="treeview">
                                             <a href="#">
                                                 <i class="fa fa-arrow-circle-right"></i>
@@ -249,7 +261,7 @@ input:checked + .slider:before {
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" style="width:100%;overflow:auto;">
 				<div align="left">
 			<a   href="purchase">Previous Order</a><div>
 			<div align="right" style="margin-top:-20px">
@@ -257,7 +269,7 @@ input:checked + .slider:before {
             <div align="center" style="margin-top:-10px">
             <h2>Make Custom Bay Order<h2>
             <label class="switch">
-              <input type="checkbox" id="myChecked" >
+              <input type="checkbox" id="myChecked" onclick="makePassword()">
               <span class="slider round"></span>
             </label>
 		    </div>
@@ -350,12 +362,22 @@ input:checked + .slider:before {
          immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
+	<div id="popup">
+        <div>Enter Password:</div>
+        <input id="password" type="password"/>
+        <button onclick="done()" style="background:lightgreen">Done</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button onclick="cancel()" style="background:orange">Cancel</button>
+
+    </div>
 	<script src="jquery-1.12.4.js"></script>
      <script src="jquery-ui.js"></script>
 	<script src="dist/bootstrap-tokenfield.js"></script>
 	<script src="paho.js"></script>
  <script src="url.js"></script>
 	<script src="transport.js"></script>
+	<script src="paho.js"></script>
+	<script src="completionAlert.js"></script>
 
 
 </body>

@@ -33,7 +33,7 @@ public class ChangeLocationService {
         ChangeLocation ch = changelocationRepository.save(changelocation);
         if (ch.getId() != 0L) {
             message = "{\"message\":\"Successful\"}";
-            commonDataRepository.insertData(ch.getId(), "change_location", "1", CurrentDate);
+            //commonDataRepository.insertData(ch.getId(), "change_location", "1", CurrentDate ,ch.getBay_no());
         }
         return message;
     }

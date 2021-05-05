@@ -29,7 +29,7 @@ public class SkuListController {
     @PostMapping({"/uploadExcel"})
     public String uploadExcel(@RequestParam("file") MultipartFile multipartFile) {
         Workbook workbook = null;
-        try {
+       try {
             workbook = (Workbook) new XSSFWorkbook(multipartFile.getInputStream());
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -115,24 +115,7 @@ public class SkuListController {
 
     }
 
-        @GetMapping("getStateList")
-    public Map<String,HashSet<String>>getAllSku(){
-        List<String>list=skuListRepository.getAllSku();
-        ArrayList<String>ls=new ArrayList<>();
-        for(String sku:list){
-            String state = "";
-            for(int i=0;i<sku.toCharArray().length;i++){
-                if(i>sku.toCharArray().length-7){
-                    state+=sku.toCharArray()[i];
-                }
-            }
-            ls.add(state);
-        }
-            HashSet<String>sk=new HashSet<>(ls);
-            HashMap<String,HashSet<String>> hMap=new HashMap<>();
-            hMap.put("state",sk);
-            return  hMap;
-        }
+   
 }
     
     

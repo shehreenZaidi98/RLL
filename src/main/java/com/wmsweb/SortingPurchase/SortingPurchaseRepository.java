@@ -76,4 +76,13 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     public int deleteQty(long order_id);
 
 
+    @Modifying
+    @Query(value = "update sorting_purchase set qty=?1 where order_id=?2 and sku=?3 and batch_no=?4 and bay=?5", nativeQuery = true)
+    @Transactional
+    public int updateSortingQty(int qty, long order_id,String sku,String batch_no,String bay);
+
+    @Query("select od from SortingPurchase od where order_id=?1 and sku=?2 and batch_no=?3 and bay=?4")
+    List<SortingPurchase> getSortingQty(long order_id,String sku,String batch_no,String bay);
+
+
 }

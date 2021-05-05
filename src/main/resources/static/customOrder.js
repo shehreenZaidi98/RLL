@@ -1,6 +1,5 @@
 var gBayList=[];
-if(localStorage.getItem("state")==null){
-
+ if(localStorage.getItem("state")==null){
  window.location.href="transport";
  }
  function getSkuList(){
@@ -45,7 +44,7 @@ if(localStorage.getItem("state")==null){
 
  	XHR.send();
  	}
-  function getBay(){
+ function getBay(){
  	var XHR = new XMLHttpRequest();
  	XHR.onreadystatechange = function() {
  	    if (this.readyState == 4 && this.status == 200) {
@@ -59,7 +58,9 @@ if(localStorage.getItem("state")==null){
  	        for(var key in result.bay){
  	        var count=0;
  	        for(var key1 in gBayList){
- 	        if(result.bay[key]==gBayList[key1]){
+ 	        if(result.bay[key]==gBayList[key1].bay_no &&
+ 	        document.getElementById("batch_no").value==gBayList[key1].batch_no
+ 	        &&document.getElementById("sku").value==gBayList[key1].sku){
  	        count++;
  	        }
  	        }
@@ -94,7 +95,7 @@ if(localStorage.getItem("state")==null){
 
  	XHR.send();
  	}
- 	function getRangeQty(){
+ function getRangeQty(){
  	var XHR = new XMLHttpRequest();
  	XHR.onreadystatechange = function() {
  	    if (this.readyState == 4 && this.status == 200) {
@@ -120,8 +121,7 @@ if(localStorage.getItem("state")==null){
 
  	XHR.send();
  	}
-
- 	function setQuantityValidation(){
+ function setQuantityValidation(){
        var qty=document.getElementById("tempQty").value;
        if((parseInt(qty)+1)<=parseInt(document.getElementById("quantity").value)){
        document.getElementById("save").disabled = true;
@@ -130,12 +130,8 @@ if(localStorage.getItem("state")==null){
        document.getElementById("save").disabled = false;
        }
  	}
-
-
-
-var tq=0;
-
-$(document).ready(function(){
+ var tq=0;
+ $(document).ready(function(){
  var count = 0;
 
  $('#product_dialog').dialog({
@@ -258,7 +254,14 @@ $(document).ready(function(){
    document.getElementById("totalquantity").value=tq;
    getpalletQty(document.getElementById("sku").value,q);
    var bay_no=document.getElementById("bay_no").value;
-   gBayList.push(bay_no);
+   gBayList.push({
+   "bay_no":bay_no,
+   "batch_no":document.getElementById("batch_no").value,
+   "sku":document.getElementById("sku").value
+   });
+
+    console.log("hash");
+    console.log(gBayList);
     count = count + 1;
 
     var permit_no=document.getElementById("permit_no").value;
@@ -333,8 +336,7 @@ $(document).ready(function(){
  });
 
 });
-
-function insertPurchaseOrder(){
+ function insertPurchaseOrder(){
 
  	var permit_no=document.getElementsByName("hidden_permit_no[]");
  	var sku=document.getElementsByName("hidden_sku[]");
@@ -386,7 +388,7 @@ function insertPurchaseOrder(){
         }
 
  }
-  var tw=0;
+ var tw=0;
  function getpalletQty(sku,qty){
  	var XHR = new XMLHttpRequest();
  	XHR.onreadystatechange = function() {
@@ -394,11 +396,7 @@ function insertPurchaseOrder(){
  	       // Typical action to be performed when the document is ready:
  	        var response = XHR.responseText;
  	         var result=JSON.parse(response);
- 	         console.log(result.PalletWeight[0]);
-             tw+=parseInt(result.PalletWeight[0])*qty;
-             console.log(tw);
- 	        document.getElementById("totalweight").value=tw;
- 	        console.log(tw);
+
  	        }
 
 
@@ -407,35 +405,53 @@ function insertPurchaseOrder(){
 
  	XHR.send();
  	}
-
-
- 	function updateTotalWeightAndQty(order_id,total_qty){
+ function updateTotalWeightAndQty(order_id,total_qty){
 
              		 var XHR2 = new XMLHttpRequest();
              		 var sku=document.getElementsByName("hidden_sku[]");
+             		 var qty=document.getElementsByName("hidden_quantity[]");
              		 var allSku="";
              		 for(var key=0 ;key<sku.length;key++){
-             		 allSku+=sku[key].value+" ";
+             		 allSku+=sku[key].value+"("+qty[key].value+") ";
              		 }
              		 console.log(allSku);
                       var hash={"order_id":""+order_id+"",
                       "total_qty":""+total_qty+"",
                       "sku":""+allSku+""
                       }
-}
+
+
+                     console.log(hash);
+             		XHR2.open("POST", gUrl.url+"/updateTransport");
+             		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+
+             	XHR2.onload = function() {
+             	          console.log(XHR2.responseText);
+             	          var response = JSON.parse(XHR2.responseText);
+
+             	      }
+
+
+             	XHR2.send(JSON.stringify(hash));
+     }
  function addData(element){
  var row = element.parentNode.parentNode.rowIndex
   var tbl = document.getElementById("product_data");
   var objCells = tbl.rows.item(row).cells;
   var bay=objCells.item(2).innerHTML;
+  var batch=objCells.item(3).innerHTML;
   var qty=objCells.item(4).innerHTML;
   var sku=objCells.item(1).innerHTML;
   var bayArray=bay.split(" ");
   var qtyArray=qty.split(" ");
   var skuArray=sku.split(" ");
+  var batchArray=batch.split(" ");
   for(var key in gBayList){
-    if(bayArray[0]==gBayList[key]){
+    if(bayArray[0]==gBayList[key].bay_no && batchArray[0]==gBayList[key].batch_no
+    && skuArray[0]==gBayList[key].sku){
     gBayList.splice(key, 1);
+    console.log(gBayList);
   }}
   tq-=parseInt(qtyArray[0]);
   getpalletQty(skuArray[0],-parseInt(qtyArray[0]));
@@ -446,7 +462,5 @@ function insertPurchaseOrder(){
   option.text = bayArray[0].trim();
   x.add(option);
  }
-
-
-window.onload=getOrderId();
-window.onload=getSkuList();
+ window.onload=getOrderId();
+ window.onload=getSkuList();

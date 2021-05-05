@@ -130,7 +130,7 @@
                                               </a>
                                               <ul class="treeview-menu">
                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                   <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                   <li class="active"><a data-toggle="modal" data-target="#modalid"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -138,8 +138,9 @@
                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
-
-                                              </ul>
+                                                     <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                   <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
+                                            </ul>
                                           </li>
                                           <li class="treeview">
                                               <a href="#">
@@ -152,7 +153,11 @@
                                                    <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                    <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                    <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                   <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                    <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                    <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                    <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                    <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                               </ul>
                                           </li>
                                          <!--  <li class="treeview">
@@ -182,14 +187,15 @@
             </ol>
         </section>
 
-         <div class="container">
+         <div class="container-fluid">
             <h2>Edit Product</h2>
              <section class="content">
-                    <div class="panel panel-primary" style="width:28.5cm;height:500px;overflow:scroll">
+             		
+                    <div class="panel panel-primary" style="width:100%;height:500px;overflow:scroll">
                         <div class="container">
                             <b><h2>Update Details</h2></b>
                           
-                            <table id="proTable" class="table table-bordered table-striped" style="width:27.7cm">
+                            <table id="proTable" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                         <tr>
                           <th>Bay No.</th>
@@ -335,6 +341,37 @@
 </div>
 <!-- ./wrapper -->
 
+<!--popup modal  -->
+	<div class="modal fade" id="modalid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#3c8dbc">
+        <h3 class="modal-title" style="color:white">Enter Password To Insert Production</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      		<div class="row"> 
+      			<div class="col-md-12">
+      				<h2 id="comp_name"></h2>
+      			</div>
+      		</div> 
+      		<br>
+      			<div class="row"> 
+      			<div class="col-md-12">
+      				<input type="password" id="password" class="form-control" placeholder="Enter Password">
+      			</div>
+      		</div> 
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="popup()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -375,6 +412,30 @@
 <script src="paho.js"></script>
  <script src="url.js"></script>
 <script src="updateProduction.js"></script>
+<script src="paho.js"></script>
+<script src="completionAlert.js"></script>
+<script>
+document.getElementById("comp_name").innerHTML=localStorage.getItem("user_id");
 
+function popup(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = XHR.responseText;
+	        var result=JSON.parse(response);
+	        console.log(result);
+			if(result.message=="Successful"){
+			
+			window.location.href="insertProduction";
+			}else{
+			alert("Please Enter Correct Password");
+			}
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getPassword?user_name="+document.getElementById("comp_name").innerHTML+"&password="+document.getElementById("password").value, true);
+	XHR.send();
+	}
+</script>
 </body>
 </html>

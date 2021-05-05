@@ -134,7 +134,7 @@
                             </a>
                             <ul class="treeview-menu">
                                              <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                    <li class="active"><a data-toggle="modal" data-target="#modalid"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
                                                     <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
                                                      <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                     <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
@@ -142,6 +142,8 @@
                                                         <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
                                                        <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
                                                      <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                                     <li><a href="downloadProductionExcel"><i class="fa fa-circle-o"></i>Download Production</a></li>
+                                                     <li><a href="productionPlanImport"><i class="fa fa-circle-o"></i>Import Production Plan</a></li>
 
                             </ul>
                         </li>
@@ -156,7 +158,11 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                                  <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
+                                                   <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                   <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                              </ul>
                         </li>
                        <!--  <li class="treeview">
@@ -194,7 +200,7 @@
 
 <div class="container" style="width:500px; margin-top:20px;">
   <div class="jumbotron" style="background: #3c8dbc;">
-    <h1 class="pb-5">EXCEL IMPORT</h1>
+    <h1 class="pb-5">Import Sku And Bay List</h1>
     <div class="file-upload pb-5">
         <div class="file-select">
           <div class="file-select-button" id="fileName">Choose File</div>
@@ -233,11 +239,38 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-<script>
-if(localStorage.getItem("user_id")==null){
-window.location.href="login";
-}
-</script>
+
+	<!--popup modal  -->
+	<div class="modal fade" id="modalid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#3c8dbc">
+        <h3 class="modal-title" style="color:white">Enter Password To Insert Production</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      		<div class="row"> 
+      			<div class="col-md-12">
+      				<h2 id="comp_name"></h2>
+      			</div>
+      		</div> 
+      		<br>
+      			<div class="row"> 
+      			<div class="col-md-12">
+      				<input type="password" id="password" class="form-control" placeholder="Enter Password">
+      			</div>
+      		</div> 
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="popup()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -276,6 +309,8 @@ window.location.href="login";
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
  <script src="url.js"></script>
+ <script src="paho.js"></script>
+ <script src="completionAlert.js"></script>
 <script>
 if(localStorage.getItem("user_id")==null){
 window.location.href="login";
@@ -287,10 +322,9 @@ document.getElementById("userName").innerHTML=localStorage.getItem("user_id");
     function uploadSingleFile() {
 
     	 var file=document.getElementById("chooseFile").files;
-    	    console.log(file[0]);
-				if(file[0]==''){
-			alert("Please Select file");
-		}
+    	 if(file.length==0){
+            alert("Please Select file");
+         }
 		else{
         var formData = new FormData();
         formData.append("file", file[0]);
@@ -301,14 +335,16 @@ document.getElementById("userName").innerHTML=localStorage.getItem("user_id");
         xhr.onload = function() {
             console.log(xhr.responseText);
             var response = xhr.responseText;
-            if(response!= "") {
+            var result = JSON.parse(xhr.responseText);
+            if(result.message= "Successful") {
 
                 alert("File Uploaded Successfully");
-
+                window.location.reload();
             } else {
-                singleFileUploadSuccess.style.display = "none";
-                singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
-            }
+            alert("File already Uploaded");
+            window.location.reload();
+
+                       }
         }
 
         xhr.send(formData);
@@ -326,7 +362,29 @@ function getreport()
 	
 	}
 </script> -->
+<script>
+document.getElementById("comp_name").innerHTML=localStorage.getItem("user_id");
 
+function popup(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = XHR.responseText;
+	        var result=JSON.parse(response);
+	        console.log(result);
+			if(result.message=="Successful"){
+			
+			window.location.href="insertProduction";
+			}else{
+			alert("Please Enter Correct Password");
+			}
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getPassword?user_name="+document.getElementById("comp_name").innerHTML+"&password="+document.getElementById("password").value, true);
+	XHR.send();
+	}
+</script>
 </body>
 
 </html>

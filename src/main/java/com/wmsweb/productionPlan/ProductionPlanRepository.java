@@ -32,6 +32,12 @@ public interface ProductionPlanRepository extends CrudRepository<ProductionPlan,
                                                 String batch_no);
     @Query("select pp.line_no from ProductionPlan pp")
     List<String>getLineNo();
+    
+    @Query("select sk from ProductionPlan sk ")
+    List<ProductionPlan> getSkuList();
+
+    @Query("select sk from ProductionPlan sk where sku=?1 ")
+    List<ProductionPlan> getSkuList(String sku);
     /*
      * @Query("select pp.qty from ProductionPlan pp where sku=?1") public int
      * get_qty(String sku);
