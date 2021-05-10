@@ -10,7 +10,7 @@ var gBayList=[];
  	        var response = XHR.responseText;
  	         var result=JSON.parse(response);
              	        console.log(result);
- 	        var sku=document.getElementById("sku");
+ 	        var sku=document.getElementById("select1");
  	        sku.innerHTML="";
  	        sku.innerHTML+='<option value="select">Select</option>';
  	        for(var key in result.production){

@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-       
+
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
@@ -222,9 +222,12 @@
         
     <div class="form-group" align = "left">               
                <label>SKU.</label>
-               <select name = "sku" id = "sku" class="form-control" onchange="getRangeQty()">
+              <!-- <select name = "sku" id = "sku" class="form-control" onchange="getRangeQty()">
                <option value ="SKU" >SKU</option>
-               </select>
+               </select>-->
+                <input list="select1" id="sku"  class="form-control" onchange="getRangeQty()" value="" placeholder="Search Sku ...">
+                 <datalist id="select1">
+                 </datalist>
         <span id="error_serial_no" class="text-danger"></span>
    </div>  
    <div class="form-group" align = "left">

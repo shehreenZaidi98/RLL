@@ -229,8 +229,12 @@
                                             <div class="form-group" >
 
                                                <h5 style="font-weight:bold;"> SKU: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
-                                              <select id="sku" name="sku" class="form-control">
-                                             </select>
+                                             <!-- <select id="sku" name="sku" class="form-control" placeholder="Search Sku ...">
+                                             </select>-->
+                                              <input list="select1" id="sku"  style="width:248px" class="form-control" value="" placeholder="Search Sku ...">
+                                                <datalist id="select1">
+                                                </datalist>
+
                                     </div>    </td>
                                     </tr>
                                     <tr>

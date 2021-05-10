@@ -11,11 +11,11 @@ if(localStorage.getItem("state")==null){
  	        var response = XHR.responseText;
  	         var result=JSON.parse(response);
              	        console.log(result);
- 	        var sku=document.getElementById("sku");
- 	        sku.innerHTML="";
- 	        sku.innerHTML+='<option value="select">Select</option>';
+ 	        var select1=document.getElementById("select1");
+ 	        select1.innerHTML="";
+ 	       // select1.innerHTML+='<option value="select">Select</option>';
  	        for(var key in result.production){
- 	        sku.innerHTML+='<option value='+result.production[key]+'>'+result.production[key]+'</option>';
+ 	        select1.innerHTML+='<option value='+result.production[key]+'>'+result.production[key]+'</option>';
  	        }
 
  	    }

@@ -223,8 +223,11 @@
 
     <div class="form-group" align = "left">
                <label>SKU.</label>
-               <select name = "sku" id = "sku" class="form-control" onchange="getBatchNo()">
-               </select>
+              <!-- <select name = "sku" id = "sku" class="form-control" onchange="getBatchNo()">
+               </select>-->
+               <input list="select1" id="sku"  class="form-control" onchange="getBatchNo()" value="" placeholder="Search Sku ...">
+                 <datalist id="select1">
+                 </datalist>
         <span id="error_serial_no" class="text-danger"></span>
    </div>
     <div class="form-group" align = "left">
