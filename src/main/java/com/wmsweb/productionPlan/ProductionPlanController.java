@@ -109,7 +109,8 @@ public class ProductionPlanController {
        System.out.println("todayDate"+toDateString);
        System.out.println("fromDate"+fromDate);
 
-        ArrayList<ProductionPlan> productionPlanList = (ArrayList<ProductionPlan>) productionPlanRepository.getTodayProductionPlan(fromDate + "20:00:00", toDateString+ " 19:59:59");
+       // ArrayList<ProductionPlan> productionPlanList = (ArrayList<ProductionPlan>) productionPlanRepository.getTodayProductionPlan(fromDate + "20:00:00", toDateString+ " 19:59:59");
+        ArrayList<ProductionPlan> productionPlanList = (ArrayList<ProductionPlan>) productionPlanRepository.getTodayProductionPlan(fromDate + " 00:00:00", toDateString+ " 23:59:59");
         System.out.println(productionPlanList.size());
         hmap.put("proplan", productionPlanList);
         return hmap;

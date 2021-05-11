@@ -105,4 +105,11 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
     @Query("select ts.order_id from Transport ts where truck_bay_no=?1 and date between ?2 and ?3 and status=1")
     List<String> getOrderIdwithTruckBayNo(String truck_bay_no,String from,String to);
 
+    @Query("select ts from Transport ts where order_id=?1")
+    Set<Transport> getPartyName(String order_id);
+
+
+    @Query("select ts from Transport ts where party_name=?1")
+    List<Transport> getPartyNameDetails(String party_name);
 }
+

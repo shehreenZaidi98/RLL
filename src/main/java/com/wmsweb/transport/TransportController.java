@@ -1885,4 +1885,34 @@ public class TransportController {
         }
         return  hmap;
     }
+
+        @GetMapping("getPartyNameList")
+        public Map<String,Set<String>>getPartyNameList(){
+        Set<String>transports=new HashSet<>();
+        List<Transport>transport= (List<Transport>) transportRepository.findAll();
+        for(Transport transport1:transport){
+         transports.add(transport1.getParty_name());
+        }
+        HashMap<String,Set<String>>hMap=new HashMap<>();
+        hMap.put("partyName",transports);
+        return  hMap;
+
+
+       }
+
+       @GetMapping("getPartyNameDetails")
+    public Map<String,List<Transport>>getPartyName(@RequestParam("party_name")String party_name){
+        List<Transport>getTransport=transportRepository.getPartyNameDetails(party_name);
+        HashMap<String,List<Transport>>hMap=new HashMap<>();
+        hMap.put("partyDetails",getTransport);
+        return hMap;
+       }
+
+
+
+
+
+
+
+
 }

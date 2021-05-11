@@ -1,6 +1,5 @@
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -285,6 +284,10 @@ input:checked + .slider:before {
 												<input list="party1" class="form-control" id="partyName"
 													name="partyName" placeholder="Enter Party Name" required>
 												<datalist id="party1"></datalist>
+
+
+												<!--List-->
+
 									</div>
 								</td>
 								<td>
@@ -370,6 +373,66 @@ input:checked + .slider:before {
         <button onclick="cancel()" style="background:orange">Cancel</button>
 
     </div>
+    <!--pop up body--->
+    <div id="myPopup"  class="shadow-lg">
+        <div class="popupHeader" style="display: flex;justify-content: space-between;align-items: center;">
+            <h6 class="font-weight-bold mt-1">ADD ITEMS</h6>
+            <i class="fas fa-times" onclick="closePopup()"></i>
+        </div>
+        <div class="popupBody">
+            <div class="my-3 flexSep">
+                <label >Pid</label>
+                <input type="text" id="pid"  placeholder="Enter pid" value="" class="field" readonly>
+            </div>
+            <div class="my-3 flexSep">
+                <label >Barcode</label>
+                <input type="text" id="barcode"  placeholder="Enter barcode" value="" class="field" readonly>
+            </div>
+            <div class="my-3 flexSep">
+                <label >Vendor</label>
+                <!--<select  id="vendor"  style="width:195px" value="" class="field" ></select>-->
+                <input type="text" id="vendor"  placeholder="Enter vendor Name" value="" class="field" readonly>
+
+            </div>
+
+            <div class="my-3 flexSep">
+                <label>Product Name</label>
+                <input type="text" id="productName"  placeholder="Enter product name" class="field" readonly>
+            </div>
+
+            <div class="my-3 flexSep">
+                <label >Total Quantity</label>
+                <input type="text" id="totalQuantity"  placeholder="Enter Quantity" value="" class="field" readonly>
+
+            </div>
+
+            <div class="my-3 flexSep">
+                <label>Price</label>
+                <input type="number" id="price" placeholder="Enter Price" class="field" readonly>
+            </div>
+           <!-- <div class="my-3 flexSep">
+                <label>Expiry</label>
+                <input type="text" id="expiry" placeholder="Enter Expiry" class="field" readonly>
+            </div>-->
+            <div class="my-3 flexSep">
+                <label>Quantity</label>
+                <input type="number" id="quantity" placeholder="Enter quantity"  oninput="checkQuantity()" class="field" >
+            </div>
+           <!-- <input type="hidden" id="availableQty" readonly class="field" >-->
+
+            <div class="my-3 flexSep">
+                <label>Expiry</label>
+                <input type="text" id="expiry" placeholder="Enter expiry" class="field" >
+            </div>
+
+
+
+            <div class="my-3 text-right">
+                <button type="button" id="add" onclick="putData()" >submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- finish--->
 	<script src="jquery-1.12.4.js"></script>
      <script src="jquery-ui.js"></script>
 	<script src="dist/bootstrap-tokenfield.js"></script>
