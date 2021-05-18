@@ -41,75 +41,77 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet"href="jquery-ui.css">
 <style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
-.slider {
-  position: absolute;
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top:20px;
+  bottom:0px;
+  right:500px;
+  overflow:scroll;
+  border: 3px solid #000;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: solid 1px ;
+  background: #f1f1f1;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
 }
 
-.slider.round:before {
-  border-radius: 50%;
-}
-
-#popup {
-    width:220px;
-    height:100px;
-    padding:20px;
-    background-color:#3c8dbc;
-    position:absolute;
-    top:200px;
-    left:600px;
-    display:none;
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
 }
 </style>
 
@@ -265,13 +267,7 @@ input:checked + .slider:before {
 			<a   href="purchase">Previous Order</a><div>
 			<div align="right" style="margin-top:-20px">
 		    <a   href="addDriverDetails">Place Order To Bay</a></div >
-            <div align="center" style="margin-top:-10px">
-            <h2>Make Custom Bay Order<h2>
-            <label class="switch">
-              <input type="checkbox" id="myChecked" onclick="makePassword()">
-              <span class="slider round"></span>
-            </label>
-		    </div>
+
 					<div class="container" style="margin-left: 12%;">
 						<table>
 							<tr>
@@ -282,8 +278,10 @@ input:checked + .slider:before {
 												style="font-weight: bold; color: red;">*</label>
 											<h5>
 												<input list="party1" class="form-control" id="partyName"
-													name="partyName" placeholder="Enter Party Name" required>
-												<datalist id="party1"></datalist>
+													name="partyName" placeholder="Enter Party Name" onchange="getAddress()" required>
+												<datalist id="party1">
+												<option value="Add New Client">
+												</datalist>
 
 
 												<!--List-->
@@ -299,7 +297,7 @@ input:checked + .slider:before {
 										</h5>
 										<input list="transport1" class="form-control" id="address"
 											name="address" placeholder="Enter Address" required>
-										<datalist id="transport1"></datalist>
+										<!-----<datalist id="transport1"></datalist>--->
 
 									</div>
 								</td>
@@ -313,8 +311,10 @@ input:checked + .slider:before {
 												style="font-weight: bold; color: red;">*</label>
 										</h5>
 
-										<select class="form-control" id="state" name="state">
-											<option value="Select">Select</option>
+                                              <input  class="form-control" id="state"
+                                              name="state" placeholder="Enter state" required>
+									<!--	<select class="form-control" id="state" name="state">--->
+										<!----	<option value="Select">Select</option>---->
 
 										</select>
 									</div>
@@ -365,74 +365,40 @@ input:checked + .slider:before {
          immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<div id="popup">
-        <div>Enter Password:</div>
-        <input id="password" type="password"/>
-        <button onclick="done()" style="background:lightgreen">Done</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button onclick="cancel()" style="background:orange">Cancel</button>
+	
 
-    </div>
-    <!--pop up body--->
-    <div id="myPopup"  class="shadow-lg">
-        <div class="popupHeader" style="display: flex;justify-content: space-between;align-items: center;">
-            <h6 class="font-weight-bold mt-1">ADD ITEMS</h6>
-            <i class="fas fa-times" onclick="closePopup()"></i>
-        </div>
-        <div class="popupBody">
-            <div class="my-3 flexSep">
-                <label >Pid</label>
-                <input type="text" id="pid"  placeholder="Enter pid" value="" class="field" readonly>
-            </div>
-            <div class="my-3 flexSep">
-                <label >Barcode</label>
-                <input type="text" id="barcode"  placeholder="Enter barcode" value="" class="field" readonly>
-            </div>
-            <div class="my-3 flexSep">
-                <label >Vendor</label>
-                <!--<select  id="vendor"  style="width:195px" value="" class="field" ></select>-->
-                <input type="text" id="vendor"  placeholder="Enter vendor Name" value="" class="field" readonly>
+    <!-----Add new client---->
+   <div class="form-popup" id="addNewClient">
+     <div class="form-container">
+       <h1>Add Cient</h1>
+        <label for="partyname"><b>Party Name</b></label>
+              <input type="text" id="partyname" placeholder="Enter Party Name" name="partyname" required>
 
-            </div>
+       <label for="email"><b>Email</b></label>
+       <input type="text" id="email" placeholder="Enter Email" name="email" required>
 
-            <div class="my-3 flexSep">
-                <label>Product Name</label>
-                <input type="text" id="productName"  placeholder="Enter product name" class="field" readonly>
-            </div>
+       <label for ="gst"><b>Gst</b><label>
+       <input type="text" id="gst" placeholder="Enter gst" name="gst" required>
 
-            <div class="my-3 flexSep">
-                <label >Total Quantity</label>
-                <input type="text" id="totalQuantity"  placeholder="Enter Quantity" value="" class="field" readonly>
+        <label for ="pan"><b>Pan</b><label>
+         <input type="text" id="pan" placeholder="Enter pan" name="pan" required>
 
-            </div>
+          <label for="address"><b>Address</b></label>
+          <input type="text" id="address" placeholder="Enter Address" name="address" required>
 
-            <div class="my-3 flexSep">
-                <label>Price</label>
-                <input type="number" id="price" placeholder="Enter Price" class="field" readonly>
-            </div>
-           <!-- <div class="my-3 flexSep">
-                <label>Expiry</label>
-                <input type="text" id="expiry" placeholder="Enter Expiry" class="field" readonly>
-            </div>-->
-            <div class="my-3 flexSep">
-                <label>Quantity</label>
-                <input type="number" id="quantity" placeholder="Enter quantity"  oninput="checkQuantity()" class="field" >
-            </div>
-           <!-- <input type="hidden" id="availableQty" readonly class="field" >-->
+          <label for="country"><b>Country</b></label>
+          <input type="text" id="country" placeholder="Enter Country" name="country" required>
 
-            <div class="my-3 flexSep">
-                <label>Expiry</label>
-                <input type="text" id="expiry" placeholder="Enter expiry" class="field" >
-            </div>
+          <label for="state"><b>State</b></label>
+          <input type="text" id="state" placeholder="Enter State" name="state" required>
 
+       <label for="pincode"><b>Pin code</b></label>
+       <input type="number" id="pincode" placeholder="Enter Pin code" name="pincode" required>
 
-
-            <div class="my-3 text-right">
-                <button type="button" id="add" onclick="putData()" >submit</button>
-            </div>
-        </div>
-    </div>
-    <!-- finish--->
+       <button type="submit" class="btn">Login</button>
+       <button type="button" class="btn cancel" onclick="closePopUp()">Close</button>
+     </div>
+   </div>
 	<script src="jquery-1.12.4.js"></script>
      <script src="jquery-ui.js"></script>
 	<script src="dist/bootstrap-tokenfield.js"></script>
@@ -441,6 +407,8 @@ input:checked + .slider:before {
 	<script src="transport.js"></script>
 	<script src="paho.js"></script>
 	<script src="completionAlert.js"></script>
+
+
 
 
 </body>

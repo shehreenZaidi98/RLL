@@ -4,30 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b3ce771-8cfd-4b4d-899a-09aa7d97138d" name="Default Changelist" comment="2021-05-10">
+    <list default="true" id="46bf7dc0-6944-43da-a04f-22ab9f7ba173" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/productionPlan/ProductionPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/productionPlan/ProductionPlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/transport/TransportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/transport/TransportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/transport/TransportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/transport/TransportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/transport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/transport.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/transport.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/transport.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1s6WVIS7dcBhtBixDFk86fQjAZK" />
+  <component name="ProjectId" id="1sQPTxu8bSHOeP5ayzMFVHKkHF0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,12 +32,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JavaWorkSpace\shehreenProject\wmsweb\src\main\resources\static" />
-    </key>
+    <property name="last_opened_file_path" value="F:/project/pharmacy" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="WmswebApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -65,21 +58,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1b3ce771-8cfd-4b4d-899a-09aa7d97138d" name="Default Changelist" comment="" />
-      <created>1620193542133</created>
+      <changelist id="46bf7dc0-6944-43da-a04f-22ab9f7ba173" name="Default Changelist" comment="" />
+      <created>1620801872636</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1620193542133</updated>
+      <updated>1620801872636</updated>
     </task>
-    <task id="LOCAL-00001" summary="2021-05-10">
-      <created>1620627575723</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1620627575723</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.jsp" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -92,30 +81,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="2021-05-10" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021-05-10" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

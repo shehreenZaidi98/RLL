@@ -1,4 +1,4 @@
-
+/*
 function getAddress(){
 	var XHR = new XMLHttpRequest();
 	XHR.onreadystatechange = function() {
@@ -17,7 +17,7 @@ function getAddress(){
 	XHR.open("GET", gUrl.url+"/getAddress", true);
 
 	XHR.send();
-	}
+	}*/
 	function makePassword(){
 	if(document.getElementById("myChecked").checked){
 	document.getElementById("myChecked").checked=false
@@ -88,7 +88,7 @@ else if(permit==""){
 }
 
 
-
+/*
 function getPartyName(){
 	var XHR = new XMLHttpRequest();
 	XHR.onreadystatechange = function() {
@@ -106,7 +106,7 @@ function getPartyName(){
 
 	XHR.send();
 	}
-	
+	*/
 	
 	var permitList=[];
 	function getPermitList(){
@@ -137,7 +137,7 @@ $(document).ready(function() {
       showAutocompleteOnFocus: true
     });
 });
-
+/*
 function getState(){
 	var XHR = new XMLHttpRequest();
 	XHR.onreadystatechange = function() {
@@ -156,7 +156,7 @@ function getState(){
 	XHR.open("GET", gUrl.url+"/getStateList", true);
 
 	XHR.send();
-	}
+	}*/
 
 function showPopup() {
      document.getElementById("popup").style.display = "block";
@@ -167,9 +167,9 @@ function cancel() {
 
 
 
-window.onload=getAddress();
+
 window.onload=getPartyName();
-window.onload=getState();
+
 
 
 function done(){
@@ -198,3 +198,56 @@ function done(){
 	XHR.send();
 	}
 
+
+function getPartyName(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	        var response = XHR.responseText;
+	         var result=JSON.parse(response);
+
+	        var address=document.getElementById("party1")
+	        for(var key in result.party){
+	        address.innerHTML+='<option value='+result.party[key]+'>';
+	        }
+
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getAllPartyNameList", true);
+
+	XHR.send();
+	}
+
+	function getAddress(){
+     	var XHR = new XMLHttpRequest();
+     	XHR.onreadystatechange = function() {
+     	    if (this.readyState == 4 && this.status == 200) {
+     	       // Typical action to be performed when the document is ready:
+     	        var response = XHR.responseText;
+     	         var result=JSON.parse(response);
+     	         console.log(result);
+                 if(document.getElementById("partyName").value=="Add New Client"){
+                 openPopUp();
+                 }
+                 else
+                 {
+                 document.getElementById("address").value=result.details[0].address;
+                 document.getElementById("state").value=result.details[0].state;
+                }
+
+     	    }
+     	};
+     	XHR.open("GET", gUrl.url+"/getClientRegistrationDetails?party_name="+document.getElementById("partyName").value, true);
+
+     	XHR.send();
+     	}
+
+function openPopUp(){
+ document.getElementById("addNewClient").style.display = "block";
+}
+
+
+function closePopUp(){
+ document.getElementById("addNewClient").style.display = "none";
+ window.location.reload();
+}
