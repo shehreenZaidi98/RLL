@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46bf7dc0-6944-43da-a04f-22ab9f7ba173" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/clientRegistration/ClientRegistrationRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/transport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/transport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/transport.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/transport.js" afterDir="false" />
-    </list>
+    <list default="true" id="46bf7dc0-6944-43da-a04f-22ab9f7ba173" name="Default Changelist" comment="2021-05-18" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +54,14 @@
       <option name="presentableId" value="Default" />
       <updated>1620801872636</updated>
     </task>
+    <task id="LOCAL-00001" summary="2021-05-18">
+      <created>1621320849846</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621320849846</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -81,5 +79,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2021-05-18" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021-05-18" />
   </component>
 </project>
